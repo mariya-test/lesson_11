@@ -27,7 +27,7 @@ def test_capitalize_negative(input_str, expected):
 
 
 @pytest.mark.positive
-@pytest.mark.parametrize("input_str", "expected_output", [
+@pytest.mark.parametrize("input_str, expected_output", [
     (" Skypro", "Skypro"),
 ])
 def test_trim_positive(input_str,expected_output):
@@ -49,8 +49,8 @@ def test_contains_positive():
     assert  string_utils.contains("Skypro", "k") is True
 
 @pytest.mark.negative
-def test_contains_positive():
-    asser string_utils.contains("Skypro", "1") is False
+def test_contains_negative():
+    assert string_utils.contains("Skypro", "1") is False
 
 
 @pytest.mark.positive
