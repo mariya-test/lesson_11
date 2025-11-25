@@ -25,3 +25,4 @@ flash_element = driver.find_element(By.CSS_SELECTOR, "div#flash.flash.success")
 print(flash_element.text)
 sleep(5)
 driver.quit()
+
