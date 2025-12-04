@@ -9,13 +9,11 @@ driver.implicitly_wait(20)
 
 driver.get(" https://bonigarcia.dev/selenium-webdriver-java/loading-images.html")
 
+WebDriverWait(driver, 20).until(
+    EC.text_to_be_present_in_element((By.ID, "text"), "Done!")
+)
 
-element = WebDriverWait(driver,50).until(
-    EC.presence_of_element_located((By.XPATH, "//img"))
-)
-img = WebDriverWait(driver, 50).until(
-    EC.presence_of_element_located((By.XPATH, "//img"))
-)
-src_value = img.get_attribute("scr")
+third_image = driver.find_element(By.ID, "award")
+src_value = third_image.get_attribute("src")
 print(src_value)
 driver.quit()
