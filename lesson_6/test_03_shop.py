@@ -4,9 +4,9 @@ from selenium.webdriver.edge.service import Service as  EdgeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-driver = webdriver.Firefox()
+driver=webdriver.Firefox()
 driver.get("https://www.saucedemo.com/")
- WebDriverWait(driver,5).until(
+WebDriverWait(driver,5).until(
      EC.presence_of_element_located((By.ID, "user-name"))
  )
  driver.find_element(By.ID, "user-name").send_keys("standard_user")
@@ -18,13 +18,13 @@ driver.get("https://www.saucedemo.com/")
  )
 
 items_add = [
-    "Sauce Labs Backpack"
-    "Sauce Labs Bolt T-Shirt"
+    "Sauce Labs Backpack",
+    "Sauce Labs Bolt T-Shirt",
     "Sauce Labs Onesie"
 ]
 
 for items_name in items_add:
-    add_to_cart = driver.find_element(By.XPATH, f"//div[text()='{item_name}']/ancestor::div[@class='inventory_item']//button"
+    add_to_cart = driver.find_element(By.XPATH, f"//div[text()='{items_name}']/ancestor::div[@class='inventory_item']//button"
     )
     add_to_cart.click()
     print(f'Добавлено в корзину')
@@ -44,7 +44,7 @@ driver.find_element(By.ID, "last-name").send_keys("Козлова")
 driver.find_element(By.ID, "postal-code").send_keys("123456")
 driver.find_element(By.ID, "continue").click()
 WebDriverWait(driver,5).until(
-    EC.presence_of_element_located(By.CLASS_NAME, "summary_total_label")
+    EC.presence_of_element_located((By.CLASS_NAME, "summary_total_label"))
 )
 
 total_element = driver.find_element(By.CLASS_NAME, "summary_total_label")

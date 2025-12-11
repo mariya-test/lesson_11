@@ -1,5 +1,4 @@
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
 from selenium import webdriver
 from selenium.webdriver.edge.service import Service as  EdgeService
 from selenium.webdriver.common.by import By
@@ -26,7 +25,7 @@ WebDriverWait(driver,5).until(
     )
 zip_code_field = driver.find_element(By.ID, "zip-code")
 zip_code_class = zip_code_field.get_attribute("class")
-assert "alert py-2 alert-danger" in zip_code_class, "Поле Zip не подсвечивается красным"
+assert "alert-danger" in zip_code_class, "Поле Zip не подсвечивается красным"
 
 fields_to_chek = [
     'first-name','last-name','adress', 'e-mail','phone', 'city', 'country',
