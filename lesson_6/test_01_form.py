@@ -4,7 +4,7 @@ from selenium.webdriver.edge.service import Service as  EdgeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-
+def test_form_fields():
 service = EdgeService()
 driver = webdriver.Edge(service=service)
 driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
@@ -28,8 +28,8 @@ zip_code_class = zip_code_field.get_attribute("class")
 assert "alert-danger" in zip_code_class, "Поле Zip не подсвечивается красным"
 
 fields_to_chek = [
-    'first-name','last-name','adress', 'e-mail','phone', 'city', 'country',
-    'gob-position', 'company'
+    'first-name','last-name','address', 'e-mail','phone', 'city', 'country',
+    'job-position', 'company'
 ]
 for field_name in fields_to_chek:
     field = driver.find_element(By.ID, f"{field_name}")
