@@ -34,6 +34,7 @@ for field_name in fields_to_chek:
 
 driver.quit()
 
+
 #for field_id in ['first_name_id', 'last_name_id', 'address', ]:  # Добавь нужные ID полей
  #   field = driver.find_element(By.ID, field_id)
   #  field_style = field.get_attribute('style')
