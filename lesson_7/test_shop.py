@@ -6,24 +6,23 @@ from selenium.webdriver.support.wait import WebDriverWait
 from lesson_7.Shop import shop
 
 
-
-
 def test_shop():
-    browser = webdriver.Firefox()
+    driver = webdriver.Firefox()
+    login_page = LoginPage(driver)
+    login_page.login("standard_user", "secret_sauce")
 
-    shop = Shop(browser)
-    shop.auto()
-    shop.items_add()
-    shop.click()
-    shop.decoration()
-total_element = driver.find_element(By.CLASS_NAME, "summary_total_label")
-total_text = total_element.text
-total_amount = total_text.replace("Total: $", "")
+    product_page = ProductPage(driver)
+    product_page.add_to_cart("Sauce Labs Backpack")
+    product_page.add_to_cart("Sauce Labs Bolt T-Shirt")
+    product_page.add_to_cart("Sauce Labs Onesie")
 
-print(f"Total amount: {total_text}")
+    cart_page = CartPage(driver)
+    cart_page.go_to_cart()
+    cart_page.checkout()
 
+    checkout_page = CheckoutPage(driver)
+    checkout_page.fill_form("Марья", "Козлова", "123456")
+    total = checkout_page.get_total()
 
-assert total_amount == "58.29", f"Ожидается общая сумма $58.29"
-
-print("OK")
-driver.quit()
+    assert total == "$58.29", f"Ожидалась сумма $58.29, получено {total}"
+    driver.quit()
