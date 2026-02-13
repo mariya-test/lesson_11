@@ -13,24 +13,28 @@ class shop():
             EC.presence_of_element_located((By.ID, "user-name"))
         )
 
-    def Login_page(self,username, password):
-       self.driver.find_element(By.ID, "user-name").send_keys("username")
-       self.driver.find_element(By.ID, "password").send_keys("password")
-       self.driver.find_element(By.ID, "login-button").click()
-       self.WebDriverWait(self.driver, 5).until(
-     EC.presence_of_element_located((By.CLASS_NAME, "inventory_list"))
- )
-    def ProductPage(self):
-        self.ProductPage = [
-    "Sauce Labs Backpack",
-    "Sauce Labs Bolt T-Shirt",
-    "Sauce Labs Onesie"
-]
-for items_name in items_add:
-    add_to_cart = self.driver.items_addfind_element(By.XPATH, f"//div[text()='{items_name}']/ancestor::div[@class='inventory_item']//button"
+
+class LoginPage:
+    def __init__(self, driver):
+     self.driver = driver
+
+    def login(self, username, password):
+     self.driver.find_element(By.ID, "user-name").send_keys(username)
+     self.driver.find_element(By.ID, "password").send_keys(password)
+     self.driver.find_element(By.ID, "login-button").click()
+
+class ProductPage:
+    def __init__(self, driver):
+    self.driver = driver
+
+    def add_to_cart(self, product_name):
+            # Находим кнопку "Add to cart" для конкретного товара
+    button = self.driver.find_element(
+    By.XPATH,
+    f"//div[text()='{product_name}']/ancestor::div[@class='inventory_item']//button"
     )
-    add_to_cart.click()
-    print(f'Добавлено в корзину')
+    button.click()
+      print(f"Товар '{product_name}' добавлен в корзину")
 
     def click(self):
         self.driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
